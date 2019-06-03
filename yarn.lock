@@ -993,10 +993,10 @@ emoji-regex@^7.0.1:
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
   integrity sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==
 
-en-dictionary@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/en-dictionary/-/en-dictionary-1.0.0.tgz#19b60423f38755a074ce6a4cf328ceb4ac8f52a5"
-  integrity sha512-ZcwjZVldw2raBZ6Ql41BUlMW97nIjX2NDMr8WsKIjCFpzzuCIwTF16EvSyw5R/OE5Emwz4vnCjb9UDVGDvxMfQ==
+en-dictionary@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/en-dictionary/-/en-dictionary-1.0.2.tgz#b23d153dbc2a92b29e1d00d490292e416af4e6f6"
+  integrity sha512-9G6QQsrQsHKe2XoImBB8JWF12fHKptSotuKNUrCQVodXm5kvxSTrRmVCDhtrwcUBMHitkpLQ0/6Q3M1AExYXkg==
   dependencies:
     en-wordnet "^2.0.2"
 
