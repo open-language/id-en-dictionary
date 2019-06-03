@@ -14,38 +14,37 @@ const reader = {
     readRemaining: 2,
 
     init: async () => {
-        fileTypes.forEach((fileType) => {
-            reader.read(fileType)
-        })
-    },
+        return new Promise((resolve) => {
+            fileTypes.forEach((fileType) => {
+                const file = `${wordnetPath}/${fileType}`
+                const readerInterface = readline.createInterface({
+                    input: fs.createReadStream(file),
+                    output: false
+                })
+        
+                readerInterface.on('line', (line) => {
+                    if (fileType === 'wn-ind-def.tab') {
+                        const item = new parser.DefinitionLine(line)
+                        dictionary.addDefinition(item)
+                    } else {
+                        const item = new parser.AllLine(line)
+                        dictionary.addIndex(item)
+                    }
+                })
+        
+                readerInterface.on('close', () => {
+                    reader.readRemaining -= 1
+                    if (reader.readRemaining === 0) {
+                        reader.isReady = true
+                        dictionary.readComplete()
+                        resolve()
+                    }
+                })
 
-    read: (fileType) => {
-        const file = `${wordnetPath}/${fileType}`
-        const readerInterface = readline.createInterface({
-            input: fs.createReadStream(file),
-            output: false
+                // Ignoring close, pause, resume, SIGCONT, SIGINT, SIGTSTP
+            })
         })
-
-        readerInterface.on('line', (line) => {
-            if (fileType === 'wn-ind-def.tab') {
-                const item = new parser.DefinitionLine(line)
-                dictionary.addDefinition(item)
-            } else {
-                const item = new parser.AllLine(line)
-                dictionary.addIndex(item)
-            }
-        })
-
-        readerInterface.on('close', () => {
-            reader.readRemaining -= 1
-            if (reader.readRemaining === 0) {
-                reader.isReady = true
-                dictionary.readComplete()
-            }
-        })
-
-        // Ignoring close, pause, resume, SIGCONT, SIGINT, SIGTSTP
-    },
+    }
 }
 
 module.exports = reader

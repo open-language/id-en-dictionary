@@ -9,8 +9,10 @@ const dictionary = {
     isReady: false,
     english: null,
 
-    initEnDictionary: async () => {
+    init: async () => {
+        const start = Date.now()
         dictionary.english = await enDictionary.init()
+        console.log(`Time to boot EN: ${(Date.now() - start)/1000}s`)
     },
 
     addIndex: (index) => {
@@ -27,7 +29,7 @@ const dictionary = {
         return datastore.index.length + datastore.definitions.length
     },
 
-    readComplete: () => {
+    readComplete: async () => {
         dictionary.isReady = true
     },
 
