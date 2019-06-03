@@ -1,12 +1,11 @@
 const reader = require('../reader')
-// const dictionary = require('./index')
+const dictionary = require('./index')
 
 describe("Test the dictionary", () => {
 
-    beforeAll(async (done) => {
-        // await dictionary.initEnDictionary()
+    beforeAll(async () => {
+        await dictionary.init()
         await reader.init()
-        done()
     })
 
     test('do something', () => {
