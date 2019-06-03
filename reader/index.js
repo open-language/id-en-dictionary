@@ -13,7 +13,7 @@ const reader = {
     isReady: false,
     readRemaining: 2,
 
-    init: () => {
+    init: async () => {
         fileTypes.forEach((fileType) => {
             reader.read(fileType)
         })
@@ -29,10 +29,10 @@ const reader = {
         readerInterface.on('line', (line) => {
             if (fileType === 'wn-ind-def.tab') {
                 const item = new parser.DefinitionLine(line)
-                dictionary.addIndex(item)
+                dictionary.addDefinition(item)
             } else {
                 const item = new parser.AllLine(line)
-                dictionary.addData(item)
+                dictionary.addIndex(item)
             }
         })
 
