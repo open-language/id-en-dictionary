@@ -6,7 +6,7 @@ class AllLine {
         this.pos = 0
         this.language = ''
         this.goodness = ''
-        this.glossary = ''
+        this.lemma = ''
 
         this.line = line
 
@@ -16,7 +16,7 @@ class AllLine {
         this.pos = configs.pos[posAbbr]
         this.language = configs.language[params.shift()]
         this.goodness = configs.goodness[params.shift()]
-        this.glossary = [params.shift()]
+        this.lemma = params.shift().split(' ').join('_')
         
         return this
     }
