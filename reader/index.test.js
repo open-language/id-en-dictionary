@@ -1,7 +1,7 @@
-// const reader = require('./index')
+const reader = require('./index')
 
 describe("Test the reader functionality", () => {
     test("Test initialization", () => {
-        // reader.init()
+        reader.init()
     })
 })
