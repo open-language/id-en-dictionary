@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "en-dictionary": "^1.0.0",
-    "en-wordnet": "^2.0.2",
     "id-wordnet": "^1.0.1"
   }
 }
