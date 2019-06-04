@@ -28,7 +28,9 @@ const reader = {
                         dictionary.db.addDefinition(item)
                     } else {
                         const item = new parser.AllLine(line)
-                        dictionary.db.addIndex(item)
+                        if (item.isGood) {
+                            dictionary.db.addIndex(item)
+                        }
                     }
                 })
         

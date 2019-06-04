@@ -12,8 +12,8 @@ describe("Test the dictionary", () => {
         console.timeEnd('reader.init')
     }, 10000)
 
-    test('Test something', () => {
-        
+    test('Test getSize ', () => {
+        expect(dictionary.db.getSize().count).toBe(149019)
     })
 
 })
