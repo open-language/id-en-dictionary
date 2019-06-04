@@ -4,28 +4,17 @@ const dictionary = require('./index')
 describe("Test the dictionary", () => {
 
     beforeAll(async () => {
+        console.time('dictionary.init')
         await dictionary.init()
+        console.timeEnd('dictionary.init')
+        console.time('reader.init')
         await reader.init()
+        console.timeEnd('reader.init')
     }, 10000)
 
-    test('Test indexLemmaSearch', () => {
-        const result = dictionary.indexLemmaSearch('mengerti')
-        expect(result.length).toBe(12)
+    test('Test something', () => {
+        
     })
 
-    test('Test indexSynsetSearch', () => {
-        const result = dictionary.indexSynsetSearch([589738])
-        expect(result.length).toBe(3)
-    })
-
-    test('Test englishSynsetSearch', () => {
-        const result = dictionary.englishSynsetSearch(589738)
-        expect(result.word).toBe('follow')
-    })
-
-    test('Query dictionary', () => {
-        const result = dictionary.query('mengerti')
-        expect(Object.keys(result).length).toBe(12)
-    }, 10000)
 })
 

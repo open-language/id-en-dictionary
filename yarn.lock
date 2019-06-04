@@ -993,10 +993,10 @@ emoji-regex@^7.0.1:
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
   integrity sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==
 
-en-dictionary@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/en-dictionary/-/en-dictionary-1.0.2.tgz#b23d153dbc2a92b29e1d00d490292e416af4e6f6"
-  integrity sha512-9G6QQsrQsHKe2XoImBB8JWF12fHKptSotuKNUrCQVodXm5kvxSTrRmVCDhtrwcUBMHitkpLQ0/6Q3M1AExYXkg==
+en-dictionary@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/en-dictionary/-/en-dictionary-1.1.0.tgz#46ae96307bb1401c68f9af07d63286e46c39974c"
+  integrity sha512-BOKvkAjsKX3epBNiy6CUcXZo8YjjE62MMT6lGhQLMk/T+jOKnk14an382uR8uqagrsYSjCCyFb8yzcR2MxMFYg==
   dependencies:
     en-wordnet "^2.0.2"
 
@@ -3371,9 +3371,9 @@ resolve@1.1.7:
   integrity sha1-IDEU2CrSxe2ejgQRs5ModeiJ6Xs=
 
 resolve@^1.10.0, resolve@^1.11.0, resolve@^1.3.2, resolve@^1.5.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.11.0.tgz#4014870ba296176b86343d50b60f3b50609ce232"
-  integrity sha512-WL2pBDjqT6pGUNSUzMw00o4T7If+z4H2x3Gz893WoUQ5KW8Vr9txp00ykiP16VBaZF5+j/OcXJHZ9+PCvdiDKw==
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.11.1.tgz#ea10d8110376982fef578df8fc30b9ac30a07a3e"
+  integrity sha512-vIpgF6wfuJOZI7KKKSP+HmiKggadPQAdsp5HiC1mvqnfp0gF1vdwgBWZIdrVft9pgqoMFQN+R7BSWZiBxx+BBw==
   dependencies:
     path-parse "^1.0.6"
 

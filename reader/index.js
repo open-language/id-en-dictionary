@@ -25,10 +25,10 @@ const reader = {
                 readerInterface.on('line', (line) => {
                     if (fileType === 'wn-ind-def.tab') {
                         const item = new parser.DefinitionLine(line)
-                        dictionary.addDefinition(item)
+                        dictionary.db.addDefinition(item)
                     } else {
                         const item = new parser.AllLine(line)
-                        dictionary.addIndex(item)
+                        dictionary.db.addIndex(item)
                     }
                 })
         
@@ -36,7 +36,7 @@ const reader = {
                     reader.readRemaining -= 1
                     if (reader.readRemaining === 0) {
                         reader.isReady = true
-                        dictionary.readComplete()
+                        dictionary.db.ready()
                         resolve()
                     }
                 })

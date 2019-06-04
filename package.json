@@ -30,7 +30,7 @@
     "test": "jest --detectOpenHandles"
   },
   "dependencies": {
-    "en-dictionary": "^1.0.2",
+    "en-dictionary": "^1.1.0",
     "id-wordnet": "^1.0.1"
   }
 }
