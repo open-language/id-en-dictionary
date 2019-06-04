@@ -15,8 +15,9 @@ class AllLine {
         this.synsetOffset = parseInt(offset, 10)
         this.pos = configs.pos[posAbbr]
         this.language = configs.language[params.shift()]
-        // this.goodness = configs.goodness[params.shift()]
-        this.goodness = params.shift()
+        
+        const goodness = params.shift()
+        this.isGood = ['Y', 'O', 'M'].includes(goodness)
         this.lemma = params.shift().split(' ').join('_')
         
         return this
