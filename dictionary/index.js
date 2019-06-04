@@ -65,11 +65,6 @@ const dictionary = {
         dictionary.english = await enDictionary.init()
     },
 
-    enOffsetSearch: (synset) => {
-        return dictionary.english.query(synset, 'synset', false)
-    },
-
-
     query: (search) => {
         const output = {}
         const offsets = []
@@ -82,6 +77,12 @@ const dictionary = {
         const offsetLemmas = datastore.indexOffsetSearch(offsets)
         Object.keys(offsetLemmas).forEach((offset) => {
             output[offset].words = offsetLemmas[offset].map(item => item.lemma).join(', ')
+        })
+
+        const offsetEnglishDetails = dictionary.english.searchOffsetsInData(offsets)
+        Object.keys(offsetEnglishDetails).forEach((offset) => {
+            output[offset].glossary = offsetEnglishDetails[offset].glossary
+            output[offset].englishWords = offsetEnglishDetails[offset].words
         })
         
         return output
