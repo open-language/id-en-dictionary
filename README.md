@@ -6,6 +6,10 @@ Id-En-Dictonary is a node.js module which makes Indonesian words, their relation
 
 This packages uses the [Id-Wordnet](https://github.com/open-language/id-wordnet) and [En-Wordnet](https://github.com/open-language/en-wordnet) package to make the words, their meanings and relationships available to your node.js package. It also adds helper functions for other ways to access the information.
 
+![](https://img.shields.io/travis/open-language/id-en-dictionary.svg)
+![](https://img.shields.io/codecov/c/github/open-language/id-en-dictionary/master.svg)
+![](https://img.shields.io/github/license/open-language/id-en-dictionary.svg)
+
 ## Quick Start
 
 You can install the package via `npm` or `yarn`
