@@ -1,22 +1,20 @@
-const wordnet = require('id-wordnet')
 const readline = require('readline')
 const fs = require('fs')
 const parser = require('../parser')
 const dictionary = require('../dictionary')
 
-const version = "1.2"
-const wordnetPath = wordnet[version]
+class Reader {
+    constructor(path) {
+        this.isReady = false
+        this.readRemaining = 2
+        this.fileTypes = ['wn-ind-def.tab', 'wn-msa-all.tab']
+        this.path = path
+    }
 
-const fileTypes = ['wn-ind-def.tab', 'wn-msa-all.tab']
-
-const reader = {
-    isReady: false,
-    readRemaining: 2,
-
-    init: async () => {
+    async init() {
         return new Promise((resolve) => {
-            fileTypes.forEach((fileType) => {
-                const file = `${wordnetPath}/${fileType}`
+            this.fileTypes.forEach((fileType) => {
+                const file = `${this.path}/${fileType}`
                 const readerInterface = readline.createInterface({
                     input: fs.createReadStream(file),
                     output: false
@@ -35,9 +33,9 @@ const reader = {
                 })
         
                 readerInterface.on('close', () => {
-                    reader.readRemaining -= 1
-                    if (reader.readRemaining === 0) {
-                        reader.isReady = true
+                    this.readRemaining -= 1
+                    if (this.readRemaining === 0) {
+                        this.isReady = true
                         dictionary.db.ready()
                         resolve()
                     }
@@ -49,4 +47,5 @@ const reader = {
     }
 }
 
-module.exports = reader
+
+module.exports = Reader
