@@ -1,6 +1,8 @@
 const wordnet = require('id-wordnet')
 const Reader = require('../reader')
-const dictionary = require('./index')
+const Dictionary = require('./index')
+
+const dictionary = new Dictionary()
 
 describe("Test the dictionary", () => {
 
