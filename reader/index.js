@@ -1,7 +1,7 @@
 const readline = require('readline')
 const fs = require('fs')
 const parser = require('../parser')
-const dictionary = require('../dictionary')
+const database = require('../database')
 
 class Reader {
     constructor(path) {
@@ -23,11 +23,11 @@ class Reader {
                 readerInterface.on('line', (line) => {
                     if (fileType === 'wn-ind-def.tab') {
                         const item = new parser.DefinitionLine(line)
-                        dictionary.db.addDefinition(item)
+                        database.addDefinition(item)
                     } else {
                         const item = new parser.AllLine(line)
                         if (item.isGood) {
-                            dictionary.db.addIndex(item)
+                            database.addIndex(item)
                         }
                     }
                 })
@@ -36,7 +36,7 @@ class Reader {
                     this.readRemaining -= 1
                     if (this.readRemaining === 0) {
                         this.isReady = true
-                        dictionary.db.ready()
+                        database.ready()
                         resolve()
                     }
                 })
