@@ -1,25 +1,28 @@
 const enDictionary = require('en-dictionary')
-const database = require('../database')
+const Database = require('../database')
 
 class Dictionary {
-    constructor() {
+    constructor(path) {
+        this.path = path
         this.english = null
+        this.database = new Database(path)
     }
 
     async init() {
+        await this.database.init()
         this.english = await enDictionary.init()
     }
 
     query(search) {
         const output = {}
         const offsets = []
-        const lemmaOffsets = database.indexLemmaSearch(search)
+        const lemmaOffsets = this.database.indexLemmaSearch(search)
         lemmaOffsets[search].forEach((item) => {
             output[item.offset] = item
             offsets.push(item.offset)
         })
 
-        const offsetLemmas = database.indexOffsetSearch(offsets)
+        const offsetLemmas = this.database.indexOffsetSearch(offsets)
         Object.keys(offsetLemmas).forEach((offset) => {
             output[offset].words = offsetLemmas[offset].map(item => item.lemma).join(', ')
         })
@@ -33,6 +36,5 @@ class Dictionary {
         return output
     }
 }
-
 
 module.exports = Dictionary

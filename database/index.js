@@ -1,63 +1,90 @@
-const database = {
+const Reader = require('../reader')
 
-    init: () => {
+class Database {
+    constructor(path) {
+        this.isReady = false
+        this.isProcessing = false
+        this.index = []
+        this.indexLemmaIndex = {}
+        this.indexOffsetIndex = {}
+        this.definitions = []
+        this.reader = null
+        this.path = path
+    }
 
-    },
+    async init() {
+        if (!this.isReady || !this.isProcessing) {
+            this.reader = new Reader(this)
+            this.isProcessing = true
+            await this.reader.init()
+        }
+    }
 
-    isReady: false,
-    ready: () => {
-        database.isReady = true
-    },
-    getSize: () => {
+    markReady() {
+        this.isReady = true
+        this.isProcessing = false
+    }
+
+    getSize() {
         return {
-            count: database.index.length + database.definitions.length,
-            indexes: Object.keys(database.indexOffsetIndex).length + Object.keys(database.indexLemmaIndex).length
+            count: this.index.length + this.definitions.length,
+            indexes: Object.keys(this.indexOffsetIndex).length + Object.keys(this.indexLemmaIndex).length
         }
-    },
+    }
 
-    index: [],
-    addIndex: (item) => {
-        database.index.push(item)
+    addIndex(item) {
+        this.index.push(item)
 
-        if (!Array.isArray(database.indexLemmaIndex[item.lemma])) {
-            database.indexLemmaIndex[item.lemma] = []
+        if (!Array.isArray(this.indexLemmaIndex[item.lemma])) {
+            this.indexLemmaIndex[item.lemma] = []
         }
-        database.indexLemmaIndex[item.lemma].push(item)
+        this.indexLemmaIndex[item.lemma].push(item)
 
-        if (!Array.isArray(database.indexOffsetIndex[item.offset])) {
-            database.indexOffsetIndex[item.offset] = []
+        if (!Array.isArray(this.indexOffsetIndex[item.offset])) {
+            this.indexOffsetIndex[item.offset] = []
         }
-        database.indexOffsetIndex[item.offset].push(item)
+        this.indexOffsetIndex[item.offset].push(item)
+    }
 
-    },
+    static copyIndex(item) {
+        return {
+            offset: item.offset,
+            pos: item.pos,
+            language: item.language,
+            lemma: item.lemma
+        }
+    }
 
-    indexLemmaIndex: {},
-    indexLemmaSearch: (query) => {
+    indexLemmaSearch(query) {
         const output = {}
-        database.getArray(query).forEach((lemma) => {
-            output[lemma] = database.indexLemmaIndex[lemma]
+        Database.getArray(query).forEach((lemma) => {
+            output[lemma] = []
+            this.indexLemmaIndex[lemma].forEach((item) => {
+                output[lemma].push(Database.copyIndex(item))
+            })
         })
         return output
-    },
-    indexOffsetIndex: {},
-    indexOffsetSearch: (query) => {
+    }
+
+    indexOffsetSearch(query) {
         const output = {}
-        database.getArray(query).forEach((offset) => {
-            output[offset] = database.indexOffsetIndex[offset]
+        Database.getArray(query).forEach((offset) => {
+            output[offset] = []
+            this.indexOffsetIndex[offset].forEach((item) => {
+                output[offset].push(Database.copyIndex(item))
+            })
         })
         return output
-    },
+    }
 
-    definitions: [],
-    addDefinition: (data) => {
-        database.definitions.push(data)
-    },
+    addDefinition(data) {
+        this.definitions.push(data)
+    }
 
-    getArray: (query) => {
+    static getArray(query) {
         return (!Array.isArray(query)) ? [query] : query
-    },
-
+    }
 
 }
 
-module.exports = database
+module.exports = Database

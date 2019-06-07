@@ -1,8 +1,7 @@
 const wordnet = require('id-wordnet')
-const Reader = require('../reader')
 const Dictionary = require('./index')
 
-const dictionary = new Dictionary()
+const dictionary = new Dictionary(wordnet['1.2'])
 
 describe("Test the dictionary", () => {
 
@@ -10,11 +9,6 @@ describe("Test the dictionary", () => {
         console.time('dictionary.init')
         await dictionary.init()
         console.timeEnd('dictionary.init')
-
-        const reader = new Reader(wordnet['1.2'])
-        console.time('reader.init')
-        await reader.init()
-        console.timeEnd('reader.init')
     }, 20000)
 
     test('Test query', () => {

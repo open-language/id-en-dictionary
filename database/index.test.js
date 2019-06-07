@@ -1,6 +1,7 @@
 const wordnet = require('id-wordnet')
-const Reader = require('../reader')
-const database = require('./index')
+const Database = require('./index')
+
+const database = new Database(wordnet['1.2'])
 
 describe("Test the dictionary", () => {
 
@@ -8,11 +9,6 @@ describe("Test the dictionary", () => {
         console.time('dictionary.init')
         await database.init()
         console.timeEnd('dictionary.init')
-
-        const reader = new Reader(wordnet['1.2'])
-        console.time('reader.init')
-        await reader.init()
-        console.timeEnd('reader.init')
     }, 20000)
 
     test('Test getSize ', () => {
