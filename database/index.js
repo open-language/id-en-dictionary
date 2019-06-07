@@ -1,4 +1,7 @@
+const reiterator = require('reiterator')
 const Reader = require('../reader')
+
+const obj = reiterator.objects
 
 class Database {
     constructor(path) {
@@ -58,6 +61,12 @@ class Database {
     indexLemmaSearch(query) {
         const output = {}
         Database.getArray(query).forEach((lemma) => {
+            if (!obj.isString(lemma)) {
+                return
+            }
+            if (!obj.isArray(this.indexLemmaIndex[lemma])) {
+                return
+            }
             output[lemma] = []
             this.indexLemmaIndex[lemma].forEach((item) => {
                 output[lemma].push(Database.copyIndex(item))
@@ -69,6 +78,12 @@ class Database {
     indexOffsetSearch(query) {
         const output = {}
         Database.getArray(query).forEach((offset) => {
+            if (!obj.isNumber(offset)) {
+                return
+            }
+            if (!obj.isArray(this.indexOffsetIndex[offset])) {
+                return
+            }
             output[offset] = []
             this.indexOffsetIndex[offset].forEach((item) => {
                 output[offset].push(Database.copyIndex(item))

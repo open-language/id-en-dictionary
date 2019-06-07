@@ -18,5 +18,16 @@ describe("Test the dictionary", () => {
         expect(result['589738'].words).toEqual('memahami, mengerti, faham')
     })
 
+    test('Weird check on query', () => {
+        let result = dictionary.query(false)
+        expect(result).toEqual({})
+        result = dictionary.query('prospect')
+        expect(result).toEqual({})
+        result = dictionary.query(' ')
+        expect(result).toEqual({})
+        result = dictionary.query([])
+        expect(result).toEqual({})
+    })
+
 })
 

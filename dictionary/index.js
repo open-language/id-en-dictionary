@@ -1,5 +1,8 @@
 const enDictionary = require('en-dictionary')
+const reiterator = require('reiterator')
 const Database = require('../database')
+
+const obj = reiterator.objects
 
 class Dictionary {
     constructor(path) {
@@ -16,7 +19,17 @@ class Dictionary {
     query(search) {
         const output = {}
         const offsets = []
+
+        if (!obj.isString(search)) {
+            return output
+        }
+
         const lemmaOffsets = this.database.indexLemmaSearch(search)
+
+        if ( Object.keys(lemmaOffsets).length === 0 ) {
+            return output
+        }
+
         lemmaOffsets[search].forEach((item) => {
             output[item.offset] = item
             offsets.push(item.offset)
