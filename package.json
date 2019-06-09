@@ -1,7 +1,8 @@
 {
   "name": "id-en-dictionary",
   "version": "1.0.2",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:open-language/id-en-dictionary.git",
   "author": "Sudhanshu Raheja <sudhanshu@leftshift.io>",
   "license": "MIT",
@@ -16,6 +17,10 @@
     "nlp"
   ],
   "devDependencies": {
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.7",
+    "@typescript-eslint/parser": "^1.9.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -23,15 +28,19 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jest": "^22.6.4",
     "jest": "^24.8.0",
-    "prettier": "^1.17.1"
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.1"
   },
   "scripts": {
     "start": "node index.js",
-    "test": "jest --detectOpenHandles"
+    "test": "tsc && jest --detectOpenHandles",
+    "build": "tsc"
   },
   "dependencies": {
-    "en-dictionary": "^1.1.1",
-    "id-wordnet": "^1.0.1",
+    "en-dictionary": "^1.2.4",
+    "en-wordnet": "^2.0.6",
+    "id-wordnet": "^1.0.3",
     "reiterator": "^1.0.0"
   }
 }

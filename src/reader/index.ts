@@ -1,9 +1,17 @@
-const readline = require('readline')
-const fs = require('fs')
-const parser = require('../parser')
+import readline from 'readline'
+import fs from 'fs'
+import Database from '../database'
+import DefinitionLine from '../parser/definition.line';
+import AllLine from '../parser/all.line';
 
 class Reader {
-    constructor(db) {
+
+    isReady: boolean
+    fileTypes: string[]
+    readRemaining: number
+    db: Database
+
+    constructor(db: any) {
         this.isReady = false
         this.readRemaining = 2
         this.fileTypes = ['wn-ind-def.tab', 'wn-msa-all.tab']
@@ -16,15 +24,15 @@ class Reader {
                 const file = `${this.db.path}/${fileType}`
                 const readerInterface = readline.createInterface({
                     input: fs.createReadStream(file),
-                    output: false
+                    output: undefined
                 })
         
                 readerInterface.on('line', (line) => {
                     if (fileType === 'wn-ind-def.tab') {
-                        const item = new parser.DefinitionLine(line)
+                        const item = new DefinitionLine().parse(line)
                         this.db.addDefinition(item)
                     } else {
-                        const item = new parser.AllLine(line)
+                        const item = new AllLine().parse(line)
                         if (item.isGood) {
                             this.db.addIndex(item)
                         }
@@ -47,4 +55,4 @@ class Reader {
 }
 
 
-module.exports = Reader
+export default Reader
