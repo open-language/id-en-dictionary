@@ -1,7 +1,7 @@
-import wordnet from 'id-wordnet'
+const wordnet = require("id-wordnet").default;
 import Database from './index'
 
-const database = new Database(wordnet.get('1.2')!)
+const database = new Database(wordnet.get('1.2'))
 
 describe("Test the database", () => {
 

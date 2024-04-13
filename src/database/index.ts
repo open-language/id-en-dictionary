@@ -1,7 +1,6 @@
 import Reader from '../reader'
 import Index from '../parser/interface.index';
 import Definition from '../parser/interface.definition';
-import { stringLiteral, numberLiteralTypeAnnotation } from '@babel/types';
 
 class Database {
 

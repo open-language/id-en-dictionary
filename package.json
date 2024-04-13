@@ -1,7 +1,13 @@
 {
   "name": "id-en-dictionary",
-  "version": "1.0.3",
-  "repository": "git@github.com:open-language/id-en-dictionary.git",
+  "version": "1.0.4",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/open-language/id-en-dictionary.git"
+  },
   "author": "Sudhanshu Raheja <sudhanshu@leftshift.io>",
   "license": "MIT",
   "keywords": [
@@ -15,18 +21,23 @@
     "nlp"
   ],
   "devDependencies": {
-    "jest": "^24.8.0",
-    "prettier": "^1.18.2"
-  },
-  "scripts": {
-    "start": "node index.js",
-    "test": "tsc && jest --detectOpenHandles",
-    "build": "tsc"
+    "@types/bun": "^1.0.12",
+    "bun-plugin-dts": "^0.2.2",
+    "prettier": "^2.0.5",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
-    "en-dictionary": "^1.2.4",
-    "en-wordnet": "^2.0.6",
-    "id-wordnet": "^1.0.3",
-    "reiterator": "^1.0.0"
-  }
+    "en-dictionary": "^2.0.3",
+    "en-wordnet": "^2.0.11",
+    "id-wordnet": "^1.0.9",
+    "reiterator": "^1.1.4"
+  },
+  "scripts": {
+    "publish": "npm pkg fix; npm publish",
+    "build": "bun run build.mjs"
+  },
+  "files": [
+    "dist",
+    "database"
+  ]
 }

@@ -1,7 +1,7 @@
 import enDictionary from 'en-dictionary'
-import wordnet from 'en-wordnet'
+const wordnet = require("en-wordnet").default;
 import Database from '../database'
-import Index from '../parser/interface.index';
+// import Index from '../parser/interface.index';
 import Query from './interface.query';
 
 class Dictionary {

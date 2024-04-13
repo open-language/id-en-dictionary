@@ -1,7 +1,7 @@
-import wordnet from 'id-wordnet'
+const wordnet = require("id-wordnet").default;
 import Dictionary from './index'
 
-const dictionary = new Dictionary(wordnet.get('1.2')!)
+const dictionary = new Dictionary(wordnet.get('1.2'))
 
 describe("Test the dictionary", () => {
 
